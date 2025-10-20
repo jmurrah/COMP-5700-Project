@@ -1,0 +1,4 @@
+poetry.lock
+__pycache__/
+comp_5700_project/__pycache__/
+*.pyc
