@@ -3,6 +3,9 @@ import unicodedata
 
 
 def clean_text(text, preserve_newlines=False, remove_emojis=True):
+    if text is None:
+        return ""
+
     # Replace common markdown elements
     text = re.sub(r"#+\s+", "", text)  # Remove headers with following space
     text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)  # Remove bold
@@ -40,10 +43,13 @@ def clean_text(text, preserve_newlines=False, remove_emojis=True):
     return text
 
 
-def clean_diff_text(diff_text):
+def clean_diff_text(text):
+    if text is None:
+        return ""
+
     # Remove non-printable and control characters but preserve structure
     cleaned = "".join(
-        c if c.isprintable() or c in ("\n", "\r", "\t") else " " for c in diff_text
+        c if c.isprintable() or c in ("\n", "\r", "\t") else " " for c in text
     )
 
     # Normalize line endings but preserve diff structure

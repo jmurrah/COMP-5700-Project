@@ -44,19 +44,20 @@ SECURITY_KEYWORDS = [
 
 
 def has_security_keyword(text):
-    if not isinstance(text, str):
-        return False
     return any(keyword in text.lower() for keyword in SECURITY_KEYWORDS)
 
 
 def task5():
-    task1_csv = pd.read_csv("generated_csv_files/task1.csv")
+    print("Starting Task 5...")
+    task1_csv = pd.read_csv("generated_csv_files/task1.csv", low_memory=False)
     task2_csv = pd.read_csv(
-        "generated_csv_files/task2.csv"
+        "generated_csv_files/task2.csv",
+        low_memory=False,
     )  # NOTE: doesn't have any data needed for task5
-    task3_csv = pd.read_csv("generated_csv_files/task3.csv")
+    task3_csv = pd.read_csv("generated_csv_files/task3.csv", low_memory=False)
     task4_csv = pd.read_csv(
-        "generated_csv_files/task4.csv"
+        "generated_csv_files/task4.csv",
+        low_memory=False,
     )  # NOTE: doesn't have any data needed for task5
 
     merged_data = pd.merge(
@@ -82,5 +83,4 @@ def task5():
             "SECURITY": merged_data["SECURITY"],
         }
     )
-
     result_df.to_csv("generated_csv_files/task5.csv", index=False)

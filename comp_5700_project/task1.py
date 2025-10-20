@@ -3,6 +3,7 @@ from utils import clean_text
 
 
 def task1():
+    print("Starting Task 1...")
     all_pr_table = load_dataset(
         "hao-li/AIDev", "all_pull_request", split="train"
     ).to_pandas()
@@ -21,17 +22,13 @@ def task1():
     )
 
     # Clean text columns
-    filtered_table["TITLE"] = filtered_table["TITLE"].apply(
-        lambda x: clean_text(x) if isinstance(x, str) else x
-    )
+    filtered_table["TITLE"] = filtered_table["TITLE"].apply(lambda x: clean_text(x))
     filtered_table["AGENTNAME"] = filtered_table["AGENTNAME"].apply(
-        lambda x: clean_text(x) if isinstance(x, str) else x
+        lambda x: clean_text(x)
     )
     filtered_table["BODYSTRING"] = filtered_table["BODYSTRING"].apply(
-        lambda x: clean_text(x, preserve_newlines=True) if isinstance(x, str) else x
+        lambda x: clean_text(x, preserve_newlines=True)
     )
-    filtered_table["REPOURL"] = filtered_table["REPOURL"].apply(
-        lambda x: clean_text(x) if isinstance(x, str) else x
-    )
+    filtered_table["REPOURL"] = filtered_table["REPOURL"].apply(lambda x: clean_text(x))
 
     filtered_table.to_csv("generated_csv_files/task1.csv", index=False)

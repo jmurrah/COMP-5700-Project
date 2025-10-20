@@ -10,3 +10,4 @@ if __name__ == "__main__":
     task3()
     task4()
     task5()
+    print("\033[32mAll tasks completed!!!\033[0m")
