@@ -44,6 +44,8 @@ SECURITY_KEYWORDS = [
 
 
 def has_security_keyword(text):
+    if not isinstance(text, str):
+        return False
     return any(keyword in text.lower() for keyword in SECURITY_KEYWORDS)
 
 
@@ -65,7 +67,20 @@ def task5():
         how="inner",
     )
     merged_data["SECURITY"] = merged_data.apply(
-        lambda row: has_security_keyword(row["TITLE"] + " " + row["BODYSTRING"]), axis=1
+        lambda row: has_security_keyword(
+            str(row["TITLE"]) + " " + str(row["BODYSTRING"])
+        ),
+        axis=1,
+    ).astype(int)
+
+    result_df = pd.DataFrame(
+        {
+            "ID": merged_data["ID"],
+            "AGENT": merged_data["AGENTNAME"],
+            "TYPE": merged_data["PRTYPE"],
+            "CONFIDENCE": merged_data["CONFIDENCE"],
+            "SECURITY": merged_data["SECURITY"],
+        }
     )
 
-    columns = ["ID", "AGENT", "TYPE", "CONFIDENCE", "SECURITY"]
+    result_df.to_csv("generated_csv_files/task5.csv", index=False)
