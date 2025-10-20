@@ -1,6 +1,6 @@
 # COMP-5700-Project
 
-Course Project for COMP-5700 Software Quality Assurance
+Course Project for COMP-5700 Secure Software Process
 
 ## Rubric
 
