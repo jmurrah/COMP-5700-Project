@@ -15,7 +15,7 @@ Jacob Murrah, Cooper Jackson, JD Wilks
 This project uses Poetry as it's dependency manager.
 
 ```
-https://python-poetry.org/docs/
+https://python-poetry.org/docs/#installation
 ```
 
 ## Installation
